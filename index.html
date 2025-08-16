@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSP adjusted for TensorFlow.js (allows model & wasm loading). Tighten later if needed. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://storage.googleapis.com https://tfhub.dev https://www.kaggle.com blob:; worker-src 'self' blob:; font-src 'self'; child-src 'self' blob:; frame-src 'self';" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <meta name="author" content="Pear Interactive" />
+  <meta name="description" content="NoFace is a 100% client‑side, privacy‑first image anonymization tool. Detect, edit and anonymize faces locally – nothing ever leaves your device." />
+  <link rel="preload" as="image" href="/social/share1-1.jpg" />
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="NoFace" />
+  <meta property="og:title" content="NoFace – Privacy‑First Image Anonymization" />
+  <meta property="og:description" content="Anonymize faces locally in your browser. No uploads. No tracking. Open & free." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://noface.cloud/" />
+  <meta property="og:image" content="https://noface.cloud/social/share1-1.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="1200" />
+  <meta property="og:image:alt" content="Screenshot of NoFace anonymizing faces in a photo" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@" />
+  <meta name="twitter:title" content="NoFace – Privacy‑First Image Anonymization" />
+  <meta name="twitter:description" content="Anonymize faces locally in your browser. No uploads. No tracking. Open & free." />
+  <meta name="twitter:image" content="https://noface.cloud/social/share1-1.jpg" />
+  <meta name="twitter:image:alt" content="Screenshot of NoFace anonymizing faces in a photo" />
+  <meta name="twitter:creator" content="@" />
+  <title>NoFace - Privacy-First Image Anonymization</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

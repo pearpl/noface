@@ -1,0 +1,60 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Canonical: force https and no www for noface.cloud
+  RewriteCond %{HTTP_HOST} ^www\.noface\.cloud$ [NC,OR]
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP_HOST} ^(www\.)?noface\.cloud$ [NC]
+  RewriteRule ^ https://noface.cloud%{REQUEST_URI} [L,R=301]
+
+  # Map API calls to public/api directory (physical location)
+  RewriteCond %{REQUEST_URI} ^/api/ [NC]
+  RewriteRule ^api/(.*)$ public/api/$1 [L]
+
+  # Serve model files from public/models
+  RewriteCond %{REQUEST_URI} ^/models/ [NC]
+  RewriteRule ^models/(.*)$ public/models/$1 [L]
+
+  # Serve storage files (counters etc.)
+  RewriteCond %{REQUEST_URI} ^/storage/ [NC]
+  RewriteRule ^storage/(.*)$ public/storage/$1 [L]
+
+  # Bypass rewrite for dist assets directly
+  RewriteCond %{REQUEST_URI} ^/dist/
+  RewriteRule ^ - [L]
+
+  # Map /assets/* (built references) directly to dist/assets
+  RewriteRule ^assets/(.*)$ dist/assets/$1 [L]
+
+  # Map /images/* (static marketing/support images) to dist/images
+  RewriteRule ^images/(.*)$ dist/images/$1 [L]
+
+  # Map /social/* (Open Graph / social preview images) to dist/social
+  RewriteRule ^social/(.*)$ dist/social/$1 [L]
+
+  # Explicitly route root and /index.html to built index
+  RewriteRule ^index\.html$ dist/index.html [L]
+  RewriteRule ^$ dist/index.html [L]
+
+  # Allow existing files (other than root index) to pass through
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # SPA fallback
+  RewriteRule . dist/index.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-AnonSnap-Serve "dist"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+DirectoryIndex index.php index.html
+
+# Ensure correct types
+AddType application/javascript .js
+AddType text/css .css
