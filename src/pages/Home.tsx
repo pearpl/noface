@@ -153,15 +153,7 @@ export const Home: React.FC = () => {
               </div>
             </div>
             {/* Attribution / Footer inside section */}
-            <div className="mt-12 flex flex-col items-center gap-2">
-              <div className="h-px w-full max-w-sm bg-gradient-to-r from-transparent via-border/50 to-transparent" />
-              <div className="flex items-center gap-3 text-[10px] text-muted-foreground/70">
-                <img src="/images/freepik-attrib.png" alt="Freepik resource" className="h-6 w-auto opacity-80" loading="lazy" decoding="async" />
-                <span>
-                  Illustrations sourced under free license from <a href="https://www.freepik.com" target="_blank" rel="noopener noreferrer" className="text-brand-cyan hover:underline">Freepik</a>.
-                </span>
-              </div>
-            </div>
+            {/* Removed Freepik attribution per request */}
           </div>
         </div>
       </div>
